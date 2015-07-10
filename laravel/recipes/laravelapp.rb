@@ -9,7 +9,7 @@ node[:deploy].each do |app_name, deploy|
     EOH
   end
 
-  template "#{deploy[:deploy_to]}/current/.env" do
+  template "#{deploy[:deploy_to]}/current/.env.local.php" do
     source 'env.erb'
     mode '0660'
     owner deploy[:user]
@@ -19,7 +19,7 @@ node[:deploy].each do |app_name, deploy|
     )
   end
   
-  template "#{deploy[:deploy_to]}/current/app/config/database.php" do
+  template "#{deploy[:deploy_to]}/current/app/config/local/database.php" do
     source "database.php.erb"
     mode 0660
     group deploy[:group]
